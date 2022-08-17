@@ -1,5 +1,9 @@
 # Dynamic Properties Utils
 
+[![CS](https://github.com/WordPress/Dynamic-Properties-Utils/actions/workflows/cs.yml/badge.svg)](https://github.com/WordPress/Dynamic-Properties-Utils/actions/workflows/cs.yml)
+[![Lint](https://github.com/WordPress/Dynamic-Properties-Utils/actions/workflows/lint.yml/badge.svg)](https://github.com/WordPress/Dynamic-Properties-Utils/actions/workflows/lint.yml)
+[![Test](https://github.com/WordPress/Dynamic-Properties-Utils/actions/workflows/test.yml/badge.svg)](https://github.com/WordPress/Dynamic-Properties-Utils/actions/workflows/test.yml)
+
 ## Features
 
 - To do
