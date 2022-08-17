@@ -1,0 +1,11 @@
+# Ignore composer related files
+/composer.lock
+/vendor
+
+# Ignore local overrides of the PHPCS config file.
+.phpcs.xml
+phpcs.xml
+
+# Ignore PHPUnit results cache file and local overrides of the PHPUnit config file.
+phpunit.xml
+.phpunit.result.cache

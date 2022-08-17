@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="DynamicPropertiesUtils" xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <description>Dynamic Properties Utils coding style rules.</description>
+
+    <!--
+    #############################################################################
+    COMMAND LINE ARGUMENTS
+    https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
+    #############################################################################
+    -->
+
+    <!-- Scan all files. -->
+    <file>.</file>
+
+    <!-- Exclude Composer vendor directory. -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/tests/coverage/</exclude-pattern>
+
+    <!-- Only check PHP files. -->
+    <arg name="extensions" value="php"/>
+
+    <!-- Show progress, show the error codes for each message (source). -->
+    <arg value="ps"/>
+
+    <!-- Strip the filepaths down to the relevant bit. -->
+    <arg name="basepath" value="./"/>
+
+    <!-- Check up to 8 files simultaneously. -->
+    <arg name="parallel" value="8"/>
+
+    <!--
+    #############################################################################
+    CHECK FOR PHP CROSS-VERSION COMPATIBILITY
+    #############################################################################
+    -->
+
+    <config name="testVersion" value="5.6-"/>
+    <rule ref="PHPCompatibility"/>
+
+
+    <!--
+    #############################################################################
+    CODING STYLE RULES
+    #############################################################################
+    -->
+
+    <rule ref="PSR12">
+        <!-- Constant visibility cannot be used yet until the minimum PHP version goes up to PHP 7.1+. -->
+        <exclude name="PSR12.Properties.ConstantVisibility"/>
+
+        <!-- Address this once the code has stabilized. -->
+        <exclude name="Generic.Files.LineLength"/>
+    </rule>
+
+    <rule ref="Squiz.NamingConventions.ValidVariableName">
+        <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
+    </rule>
+
+</ruleset>
