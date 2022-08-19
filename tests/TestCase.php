@@ -9,6 +9,9 @@ abstract class TestCase extends Polyfill_TestCase
     const TEST_VALUE_1 = 'Testing-1-2-3';
     const TEST_VALUE_2 = 12345;
 
+    const ERR_DYN_PROPERTY = 'PHP Deprecation: dynamic property creation';
+    const ERR_DYN_PROPERTY_MSG = 'Creation of dynamic property %s::$%s is deprecated';
+
     const ERR_NO_ACCESS = 'PHP Error: no access';
     const ERR_NO_ACCESS_MSG_REGEX = '`Cannot access (?:private|protected) property`';
 

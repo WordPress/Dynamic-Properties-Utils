@@ -14,6 +14,18 @@ use WpOrg\DynamicPropertiesUtils\Tests\TestCase;
 final class TestGrandchildObjectAccessFromInsideChild extends TestCase
 {
     /**
+     * List of data set names for properties which would be dynamically set.
+     *
+     * @var string[]
+     */
+    const DYNAMIC = array(
+        '[Parent] private property with default value',
+        '[Parent] private property without default value',
+        '[Parent] unset private property',
+        'undeclared property',
+    );
+
+    /**
      *
      * @dataProvider dataPropertyAccessPhpNative
      *
@@ -186,6 +198,16 @@ final class TestGrandchildObjectAccessFromInsideChild extends TestCase
         $obj = new $className();
 
         switch ($expected['set']) {
+            case self::ERR_DYN_PROPERTY:
+                $this->expectDeprecation();
+                $this->expectDeprecationMessage(sprintf(self::ERR_DYN_PROPERTY_MSG, $className, $propertyName));
+
+                $obj->$propertyName = self::TEST_VALUE_1;
+
+                // Verify the set succeeded.
+                $this->assertSame($expected['set'], $obj->$propertyName);
+                break;
+
             case self::ERR_NO_ACCESS:
                 $this->expectError();
                 $this->expectErrorMessageMatches(self::ERR_NO_ACCESS_MSG_REGEX);
@@ -247,11 +269,11 @@ final class TestGrandchildObjectAccessFromInsideChild extends TestCase
     }
 
     /**
-     * Data provider.
+     * Base data sets for data providers.
      *
      * @var array
      */
-    public function dataPropertyAccessPhpNative()
+    public function dataPropertyAccessBase()
     {
         return array(
             '[Grandchild] public property with default value' => array(
@@ -514,9 +536,27 @@ final class TestGrandchildObjectAccessFromInsideChild extends TestCase
      *
      * @var array
      */
+    public function dataPropertyAccessPhpNative()
+    {
+        $data = $this->dataPropertyAccessBase();
+
+        if (PHP_VERSION_ID >= 80200) {
+            foreach (self::DYNAMIC as $name) {
+                $data[$name]['expected']['set'] = self::ERR_DYN_PROPERTY;
+            }
+        }
+
+        return $data;
+    }
+
+    /**
+     * Data provider.
+     *
+     * @var array
+     */
     public function dataPropertyAccessWithStdclass()
     {
-        return $this->dataPropertyAccessPhpNative();
+        return $this->dataPropertyAccessBase();
     }
 
     /**
@@ -526,15 +566,8 @@ final class TestGrandchildObjectAccessFromInsideChild extends TestCase
      */
     public function dataPropertyAccessWithTrait()
     {
-        $dynamic = [
-            '[Parent] private property with default value',
-            '[Parent] private property without default value',
-            '[Parent] unset private property',
-            'undeclared property',
-        ];
-
-        $data = $this->dataPropertyAccessPhpNative();
-        foreach ($dynamic as $name) {
+        $data = $this->dataPropertyAccessBase();
+        foreach (self::DYNAMIC as $name) {
             $data[$name]['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
         }
 
