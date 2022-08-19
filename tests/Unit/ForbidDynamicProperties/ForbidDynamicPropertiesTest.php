@@ -146,7 +146,7 @@ final class ForbidDynamicPropertiesTest extends TestCase
     public function verifyPropertyIssetFromInsideChildClass($className, $propertyName, $expected)
     {
         $obj = new $className();
-        $this->assertSame($expected['isset'], $obj->testPropertyIsset($propertyName));
+        $this->assertSame($expected['isset'], $obj->testChildPropertyIsset($propertyName));
     }
 
     /**
@@ -163,7 +163,7 @@ final class ForbidDynamicPropertiesTest extends TestCase
                 $this->expectError();
                 $this->expectErrorMessageMatches( self::ERR_NO_ACCESS_MSG_REGEX );
 
-                $unused = $obj->$propertyName;
+                $unused = $obj->testChildPropertyAccess($propertyName);
                 break;
 */
             case self::ERR_UNDEFINED:
@@ -175,11 +175,11 @@ final class ForbidDynamicPropertiesTest extends TestCase
                     $this->expectNoticeMessage(self::ERR_UNDEFINED_MSG);
                 }
 
-                $unused = $obj->testPropertyAccess($propertyName);
+                $unused = $obj->testChildPropertyAccess($propertyName);
                 break;
 
             default:
-                $this->assertSame($expected['get'], $obj->testPropertyAccess($propertyName));
+                $this->assertSame($expected['get'], $obj->testChildPropertyAccess($propertyName));
                 break;
         }
     }
@@ -197,7 +197,7 @@ final class ForbidDynamicPropertiesTest extends TestCase
                 $this->expectError();
                 $this->expectErrorMessageMatches( self::ERR_NO_ACCESS_MSG_REGEX );
 
-                $unused = $obj->$propertyName;
+                $obj->testChildPropertyModification($propertyName, self::TEST_VALUE_1);
                 break;
 */
 /*
@@ -210,21 +210,21 @@ final class ForbidDynamicPropertiesTest extends TestCase
                     $this->expectNoticeMessage( self::ERR_UNDEFINED_MSG );
                 }
 
-                $unused = $obj->$propertyName;
+                $obj->testChildPropertyModification($propertyName, self::TEST_VALUE_1);
                 break;
 */
             case self::EXCEPTION_OUTOFBOUNDS:
                 $this->expectException(OutOfBoundsException::class);
                 $this->expectExceptionMessage(self::EXCEPTION_OUTOFBOUNDS_MSG);
 
-                $obj->testPropertyModification($propertyName, self::TEST_VALUE_1);
+                $obj->testChildPropertyModification($propertyName, self::TEST_VALUE_1);
                 break;
 
             default:
-                $obj->testPropertyModification($propertyName, self::TEST_VALUE_1);
+                $obj->testChildPropertyModification($propertyName, self::TEST_VALUE_1);
 
                 // Verify the set succeeded.
-                $this->assertSame($expected['set'], $obj->testPropertyAccess($propertyName));
+                $this->assertSame($expected['set'], $obj->testChildPropertyAccess($propertyName));
                 break;
         }
     }
@@ -243,7 +243,7 @@ final class ForbidDynamicPropertiesTest extends TestCase
                 $this->expectError();
                 $this->expectErrorMessageMatches( self::ERR_NO_ACCESS_MSG_REGEX );
 
-                unset( $obj->$propertyName );
+                $obj->testChildPropertyUnset($propertyName);
                 break;
 */
             case self::ERR_UNDEFINED:
@@ -255,10 +255,10 @@ final class ForbidDynamicPropertiesTest extends TestCase
                     $this->expectNoticeMessage(self::ERR_UNDEFINED_MSG);
                 }
 
-                $obj->testPropertyUnset($propertyName);
+                $obj->testChildPropertyUnset($propertyName);
 
                 // Verify the unset succeeded and a get now results in the undefined notice.
-                $this->assertSame($expected['unset'], $obj->testPropertyAccess($propertyName));
+                $this->assertSame($expected['unset'], $obj->testChildPropertyAccess($propertyName));
                 break;
 
             default:

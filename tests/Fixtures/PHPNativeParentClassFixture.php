@@ -20,4 +20,24 @@ class PHPNativeParentClassFixture
     {
         unset($this->parentUnsetPublicProperty, $this->parentUnsetProtectedProperty, $this->parentUnsetPrivateProperty);
     }
+
+    public function testParentPropertyIsset($name)
+    {
+        return isset($this->$name);
+    }
+
+    public function testParentPropertyAccess($name)
+    {
+        return $this->$name;
+    }
+
+    public function testParentPropertyModification($name, $value)
+    {
+        $this->$name = $value;
+    }
+
+    public function testParentPropertyUnset($name)
+    {
+        unset($this->$name);
+    }
 }

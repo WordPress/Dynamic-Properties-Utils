@@ -22,22 +22,22 @@ class PHPNativeChildClassFixture extends PHPNativeParentClassFixture
         parent::__construct();
     }
 
-    public function testPropertyIsset($name)
+    public function testChildPropertyIsset($name)
     {
         return isset($this->$name);
     }
 
-    public function testPropertyAccess($name)
+    public function testChildPropertyAccess($name)
     {
         return $this->$name;
     }
 
-    public function testPropertyModification($name, $value)
+    public function testChildPropertyModification($name, $value)
     {
         $this->$name = $value;
     }
 
-    public function testPropertyUnset($name)
+    public function testChildPropertyUnset($name)
     {
         unset($this->$name);
     }
