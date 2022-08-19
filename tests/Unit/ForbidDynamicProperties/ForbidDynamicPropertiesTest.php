@@ -1,6 +1,6 @@
 <?php
 
-namespace WpOrg\DynamicPropertiesUtils\Tests\ForbidDynamicProperties;
+namespace WpOrg\DynamicPropertiesUtils\Tests\Unit\ForbidDynamicProperties;
 
 use OutOfBoundsException;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesChildClassFixture;
