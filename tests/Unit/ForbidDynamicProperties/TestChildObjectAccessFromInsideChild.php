@@ -11,139 +11,133 @@ use WpOrg\DynamicPropertiesUtils\Tests\TestCase;
 /**
  * @covers \WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties
  */
-final class ForbidDynamicPropertiesTest extends TestCase
+final class TestChildObjectAccessFromInsideChild extends TestCase
 {
-    /*
-     * TO DO:
-     * - Add from_outside_child_class test set
-     * - Add parent-child-grandchild test set with variations
-     */
-
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassPhpNative
+     * @dataProvider dataPropertyAccessPhpNative
      *
      */
-    public function testPropertyIssetFromInsideChildClassPhpNative($name, $expected)
+    public function testPropertyIssetPhpNative($name, $expected)
     {
-        $this->verifyPropertyIssetFromInsideChildClass(PHPNativeChildClassFixture::class, $name, $expected);
+        $this->verifyPropertyIsset(PHPNativeChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassPhpNative
+     * @dataProvider dataPropertyAccessPhpNative
      *
      */
-    public function testPropertyGetFromInsideChildClassPhpNative($name, $expected)
+    public function testPropertyGetPhpNative($name, $expected)
     {
-        $this->verifyPropertyGetFromInsideChildClass(PHPNativeChildClassFixture::class, $name, $expected);
+        $this->verifyPropertyGet(PHPNativeChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassPhpNative
+     * @dataProvider dataPropertyAccessPhpNative
      *
      */
-    public function testPropertySetFromInsideChildClassPhpNative($name, $expected)
+    public function testPropertySetPhpNative($name, $expected)
     {
-        $this->verifyPropertySetFromInsideChildClass(PHPNativeChildClassFixture::class, $name, $expected);
+        $this->verifyPropertySet(PHPNativeChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassPhpNative
+     * @dataProvider dataPropertyAccessPhpNative
      *
      */
-    public function testPropertyUnsetFromInsideChildClassPhpNative($name, $expected)
+    public function testPropertyUnsetPhpNative($name, $expected)
     {
-        $this->verifyPropertyUnsetFromInsideChildClass(PHPNativeChildClassFixture::class, $name, $expected);
+        $this->verifyPropertyUnset(PHPNativeChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassWithStdclass
+     * @dataProvider dataPropertyAccessWithStdclass
      *
      */
-    public function testPropertyIssetFromInsideChildClassWithStdclass($name, $expected)
+    public function testPropertyIssetWithStdclass($name, $expected)
     {
-        $this->verifyPropertyIssetFromInsideChildClass(StdclassChildClassFixture::class, $name, $expected);
+        $this->verifyPropertyIsset(StdclassChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassWithStdclass
+     * @dataProvider dataPropertyAccessWithStdclass
      *
      */
-    public function testPropertyGetFromInsideChildClassWithStdclass($name, $expected)
+    public function testPropertyGetWithStdclass($name, $expected)
     {
-        $this->verifyPropertyGetFromInsideChildClass(StdclassChildClassFixture::class, $name, $expected);
+        $this->verifyPropertyGet(StdclassChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassWithStdclass
+     * @dataProvider dataPropertyAccessWithStdclass
      *
      */
-    public function testPropertySetFromInsideChildClassWithStdclass($name, $expected)
+    public function testPropertySetWithStdclass($name, $expected)
     {
-        $this->verifyPropertySetFromInsideChildClass(StdclassChildClassFixture::class, $name, $expected);
+        $this->verifyPropertySet(StdclassChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassWithStdclass
+     * @dataProvider dataPropertyAccessWithStdclass
      *
      */
-    public function testPropertyUnsetFromInsideChildClassWithStdclass($name, $expected)
+    public function testPropertyUnsetWithStdclass($name, $expected)
     {
-        $this->verifyPropertyUnsetFromInsideChildClass(StdclassChildClassFixture::class, $name, $expected);
+        $this->verifyPropertyUnset(StdclassChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassWithTrait
+     * @dataProvider dataPropertyAccessWithTrait
      *
      */
-    public function testPropertyIssetFromInsideChildClassWithTrait($name, $expected)
+    public function testPropertyIssetWithTrait($name, $expected)
     {
-        $this->verifyPropertyIssetFromInsideChildClass(ForbidDynamicPropertiesChildClassFixture::class, $name, $expected);
+        $this->verifyPropertyIsset(ForbidDynamicPropertiesChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassWithTrait
+     * @dataProvider dataPropertyAccessWithTrait
      *
      */
-    public function testPropertyGetFromInsideChildClassWithTrait($name, $expected)
+    public function testPropertyGetWithTrait($name, $expected)
     {
-        $this->verifyPropertyGetFromInsideChildClass(ForbidDynamicPropertiesChildClassFixture::class, $name, $expected);
+        $this->verifyPropertyGet(ForbidDynamicPropertiesChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassWithTrait
+     * @dataProvider dataPropertyAccessWithTrait
      *
      */
-    public function testPropertySetFromInsideChildClassWithTrait($name, $expected)
+    public function testPropertySetWithTrait($name, $expected)
     {
-        $this->verifyPropertySetFromInsideChildClass(ForbidDynamicPropertiesChildClassFixture::class, $name, $expected);
+        $this->verifyPropertySet(ForbidDynamicPropertiesChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
-     * @dataProvider dataPropertyAccessFromInsideChildClassWithTrait
+     * @dataProvider dataPropertyAccessWithTrait
      *
      */
-    public function testPropertyUnsetFromInsideChildClassWithTrait($name, $expected)
+    public function testPropertyUnsetWithTrait($name, $expected)
     {
-        $this->verifyPropertyUnsetFromInsideChildClass(ForbidDynamicPropertiesChildClassFixture::class, $name, $expected);
+        $this->verifyPropertyUnset(ForbidDynamicPropertiesChildClassFixture::class, $name, $expected);
     }
 
     /**
      *
      *
      */
-    public function verifyPropertyIssetFromInsideChildClass($className, $propertyName, $expected)
+    public function verifyPropertyIsset($className, $propertyName, $expected)
     {
         $obj = new $className();
         $this->assertSame($expected['isset'], $obj->testChildPropertyIsset($propertyName));
@@ -153,19 +147,11 @@ final class ForbidDynamicPropertiesTest extends TestCase
      *
      *
      */
-    public function verifyPropertyGetFromInsideChildClass($className, $propertyName, $expected)
+    public function verifyPropertyGet($className, $propertyName, $expected)
     {
         $obj = new $className();
 
         switch ($expected['get']) {
-/*
-            case self::ERR_NO_ACCESS:
-                $this->expectError();
-                $this->expectErrorMessageMatches( self::ERR_NO_ACCESS_MSG_REGEX );
-
-                $unused = $obj->testChildPropertyAccess($propertyName);
-                break;
-*/
             case self::ERR_UNDEFINED:
                 if (PHP_VERSION_ID >= 80000) {
                     $this->expectWarning();
@@ -188,31 +174,11 @@ final class ForbidDynamicPropertiesTest extends TestCase
      *
      *
      */
-    public function verifyPropertySetFromInsideChildClass($className, $propertyName, $expected)
+    public function verifyPropertySet($className, $propertyName, $expected)
     {
         $obj = new $className();
 
         switch ($expected['set']) {
-/*          case self::ERR_NO_ACCESS:
-                $this->expectError();
-                $this->expectErrorMessageMatches( self::ERR_NO_ACCESS_MSG_REGEX );
-
-                $obj->testChildPropertyModification($propertyName, self::TEST_VALUE_1);
-                break;
-*/
-/*
-            case self::ERR_UNDEFINED:
-                if ( PHP_VERSION_ID >= 80000 ) {
-                    $this->expectWarning();
-                    $this->expectWarningMessage( self::ERR_UNDEFINED_MSG );
-                } else {
-                    $this->expectNotice();
-                    $this->expectNoticeMessage( self::ERR_UNDEFINED_MSG );
-                }
-
-                $obj->testChildPropertyModification($propertyName, self::TEST_VALUE_1);
-                break;
-*/
             case self::EXCEPTION_OUTOFBOUNDS:
                 $this->expectException(OutOfBoundsException::class);
                 $this->expectExceptionMessage(self::EXCEPTION_OUTOFBOUNDS_MSG);
@@ -233,19 +199,11 @@ final class ForbidDynamicPropertiesTest extends TestCase
      *
      *
      */
-    public function verifyPropertyUnsetFromInsideChildClass($className, $propertyName, $expected)
+    public function verifyPropertyUnset($className, $propertyName, $expected)
     {
         $obj = new $className();
 
         switch ($expected['unset']) {
-/*
-            case self::ERR_NO_ACCESS:
-                $this->expectError();
-                $this->expectErrorMessageMatches( self::ERR_NO_ACCESS_MSG_REGEX );
-
-                $obj->testChildPropertyUnset($propertyName);
-                break;
-*/
             case self::ERR_UNDEFINED:
                 if (PHP_VERSION_ID >= 80000) {
                     $this->expectWarning();
@@ -272,7 +230,7 @@ final class ForbidDynamicPropertiesTest extends TestCase
      *
      * @var array
      */
-    public function dataPropertyAccessFromInsideChildClassPhpNative()
+    public function dataPropertyAccessPhpNative()
     {
         return array(
             '[Child] public property with default value' => array(
@@ -454,9 +412,9 @@ final class ForbidDynamicPropertiesTest extends TestCase
      *
      * @var array
      */
-    public function dataPropertyAccessFromInsideChildClassWithStdclass()
+    public function dataPropertyAccessWithStdclass()
     {
-        return $this->dataPropertyAccessFromInsideChildClassPhpNative();
+        return $this->dataPropertyAccessPhpNative();
     }
 
     /**
@@ -464,13 +422,20 @@ final class ForbidDynamicPropertiesTest extends TestCase
      *
      * @var array
      */
-    public function dataPropertyAccessFromInsideChildClassWithTrait()
+    public function dataPropertyAccessWithTrait()
     {
-        $data = $this->dataPropertyAccessFromInsideChildClassPhpNative();
-        $data['[Parent] private property with default value']['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
-        $data['[Parent] private property without default value']['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
-        $data['[Parent] unset private property']['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
-        $data['undeclared property']['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
+        $dynamic = [
+            '[Parent] private property with default value',
+            '[Parent] private property without default value',
+            '[Parent] unset private property',
+            'undeclared property',
+        ];
+
+        $data = $this->dataPropertyAccessPhpNative();
+        foreach ($dynamic as $name) {
+            $data[$name]['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
+        }
+
         return $data;
     }
 }
