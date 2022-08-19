@@ -15,6 +15,6 @@ abstract class TestCase extends Polyfill_TestCase
     const ERR_UNDEFINED = 'PHP Error: undefined property';
     const ERR_UNDEFINED_MSG = 'Undefined property: ';
 
-    const ERR_OUTOFBOUNDS = 'Exception: out of bounds';
-    const ERR_OUTOFBOUNDS_MSG = 'Dynamic properties are not supported for class ';
+    const EXCEPTION_OUTOFBOUNDS = 'Exception: out of bounds';
+    const EXCEPTION_OUTOFBOUNDS_MSG = 'Dynamic properties are not supported for class ';
 }

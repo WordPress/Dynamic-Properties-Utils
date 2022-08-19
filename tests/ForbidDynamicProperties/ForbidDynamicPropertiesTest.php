@@ -202,9 +202,9 @@ final class ForbidDynamicPropertiesTest extends TestCase
                 $obj->$propertyName = self::TEST_VALUE_1;
                 break;
 
-            case self::ERR_OUTOFBOUNDS:
+            case self::EXCEPTION_OUTOFBOUNDS:
                 $this->expectException(OutOfBoundsException::class);
-                $this->expectExceptionMessage(self::ERR_OUTOFBOUNDS_MSG);
+                $this->expectExceptionMessage(self::EXCEPTION_OUTOFBOUNDS_MSG);
 
                 $obj->$propertyName = self::TEST_VALUE_1;
                 break;
@@ -375,7 +375,7 @@ final class ForbidDynamicPropertiesTest extends TestCase
     public function dataPropertyAccessFromOutsideClassWithTrait()
     {
         $data = $this->dataPropertyAccessFromOutsideClassPhpNative();
-        $data['undeclared property']['expected']['set'] = self::ERR_OUTOFBOUNDS;
+        $data['undeclared property']['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
         return $data;
     }
 
@@ -573,9 +573,9 @@ final class ForbidDynamicPropertiesTest extends TestCase
                 $unused = $obj->$propertyName;
                 break;
 */
-            case self::ERR_OUTOFBOUNDS:
+            case self::EXCEPTION_OUTOFBOUNDS:
                 $this->expectException(OutOfBoundsException::class);
-                $this->expectExceptionMessage(self::ERR_OUTOFBOUNDS_MSG);
+                $this->expectExceptionMessage(self::EXCEPTION_OUTOFBOUNDS_MSG);
 
                 $obj->testPropertyModification($propertyName, self::TEST_VALUE_1);
                 break;
@@ -746,7 +746,7 @@ final class ForbidDynamicPropertiesTest extends TestCase
     public function dataPropertyAccessFromInsideClassWithTrait()
     {
         $data = $this->dataPropertyAccessFromInsideClassPhpNative();
-        $data['undeclared property']['expected']['set'] = self::ERR_OUTOFBOUNDS;
+        $data['undeclared property']['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
         return $data;
     }
 
@@ -944,9 +944,9 @@ final class ForbidDynamicPropertiesTest extends TestCase
                 $unused = $obj->$propertyName;
                 break;
 */
-            case self::ERR_OUTOFBOUNDS:
+            case self::EXCEPTION_OUTOFBOUNDS:
                 $this->expectException(OutOfBoundsException::class);
-                $this->expectExceptionMessage(self::ERR_OUTOFBOUNDS_MSG);
+                $this->expectExceptionMessage(self::EXCEPTION_OUTOFBOUNDS_MSG);
 
                 $obj->testPropertyModification($propertyName, self::TEST_VALUE_1);
                 break;
@@ -1198,10 +1198,10 @@ final class ForbidDynamicPropertiesTest extends TestCase
     public function dataPropertyAccessFromInsideChildClassWithTrait()
     {
         $data = $this->dataPropertyAccessFromInsideChildClassPhpNative();
-        $data['[Parent] private property with default value']['expected']['set'] = self::ERR_OUTOFBOUNDS;
-        $data['[Parent] private property without default value']['expected']['set'] = self::ERR_OUTOFBOUNDS;
-        $data['[Parent] unset private property']['expected']['set'] = self::ERR_OUTOFBOUNDS;
-        $data['undeclared property']['expected']['set'] = self::ERR_OUTOFBOUNDS;
+        $data['[Parent] private property with default value']['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
+        $data['[Parent] private property without default value']['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
+        $data['[Parent] unset private property']['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
+        $data['undeclared property']['expected']['set'] = self::EXCEPTION_OUTOFBOUNDS;
         return $data;
     }
 }
