@@ -173,8 +173,7 @@ final class TestStandAloneClassAccessFromFunctionOutside extends TestCase
 
         switch ($expected['get']) {
             case self::ERR_NO_ACCESS:
-                $this->expectError();
-                $this->expectErrorMessageMatches(self::ERR_NO_ACCESS_MSG_REGEX);
+                $this->setNoAccessExpectation();
 
                 $unused = testPropertyAccessFromFunction($obj, $propertyName);
                 break;
@@ -217,8 +216,7 @@ final class TestStandAloneClassAccessFromFunctionOutside extends TestCase
                 break;
 
             case self::ERR_NO_ACCESS:
-                $this->expectError();
-                $this->expectErrorMessageMatches(self::ERR_NO_ACCESS_MSG_REGEX);
+                $this->setNoAccessExpectation();
 
                 testPropertyModificationFromFunction($obj, $propertyName, self::TEST_VALUE_1);
                 break;
@@ -249,8 +247,7 @@ final class TestStandAloneClassAccessFromFunctionOutside extends TestCase
 
         switch ($expected['unset']) {
             case self::ERR_NO_ACCESS:
-                $this->expectError();
-                $this->expectErrorMessageMatches(self::ERR_NO_ACCESS_MSG_REGEX);
+                $this->setNoAccessExpectation();
 
                 testPropertyUnsetFromFunction($obj, $propertyName);
                 break;

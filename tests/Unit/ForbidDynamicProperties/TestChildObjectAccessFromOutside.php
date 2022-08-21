@@ -165,8 +165,7 @@ final class TestChildObjectAccessFromOutside extends TestCase
 
         switch ($expected['get']) {
             case self::ERR_NO_ACCESS:
-                $this->expectError();
-                $this->expectErrorMessageMatches(self::ERR_NO_ACCESS_MSG_REGEX);
+                $this->setNoAccessExpectation();
 
                 $unused = $obj->$propertyName;
                 break;
@@ -209,8 +208,7 @@ final class TestChildObjectAccessFromOutside extends TestCase
                 break;
 
             case self::ERR_NO_ACCESS:
-                $this->expectError();
-                $this->expectErrorMessageMatches(self::ERR_NO_ACCESS_MSG_REGEX);
+                $this->setNoAccessExpectation();
 
                 $obj->$propertyName = self::TEST_VALUE_1;
                 break;
@@ -241,8 +239,7 @@ final class TestChildObjectAccessFromOutside extends TestCase
 
         switch ($expected['unset']) {
             case self::ERR_NO_ACCESS:
-                $this->expectError();
-                $this->expectErrorMessageMatches(self::ERR_NO_ACCESS_MSG_REGEX);
+                $this->setNoAccessExpectation();
 
                 unset($obj->$propertyName);
                 break;
