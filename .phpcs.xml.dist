@@ -53,8 +53,57 @@
         <exclude name="Generic.Files.LineLength"/>
     </rule>
 
+    <!-- Enforce camelCase variable names. -->
     <rule ref="Squiz.NamingConventions.ValidVariableName">
         <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
+    </rule>
+
+
+    <!--
+    #############################################################################
+    DOCUMENTATION CONSISTENCY RULES
+    #############################################################################
+    -->
+
+    <rule ref="Generic.Commenting.DocComment">
+        <exclude name="Generic.Commenting.DocComment.ParamNotFirst"/>
+    </rule>
+
+    <rule ref="Squiz.Commenting.BlockComment">
+        <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
+    </rule>
+
+    <rule ref="Squiz.Commenting.ClassComment">
+        <!-- Allow @covers tags. -->
+        <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed"/>
+    </rule>
+    <rule ref="Squiz.Commenting.ClassComment.Missing">
+        <exclude-pattern>./tests/Fixtures/*\.php$</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Commenting.DocCommentAlignment"/>
+
+    <rule ref="Squiz.Commenting.FunctionComment">
+        <!-- Minimum PHP is set to PHP 5.6, so PHP 7.0+ features can't be used yet. -->
+        <exclude name="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing"/>
+        <exclude name="Squiz.Commenting.FunctionComment.TypeHintMissing"/>
+
+        <!-- Use int and bool instead of integer and boolean. -->
+        <exclude name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"/>
+        <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
+    </rule>
+    <rule ref="Squiz.Commenting.FunctionComment.Missing">
+        <exclude-pattern>./tests/Fixtures/*\.php$</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Commenting.InlineComment"/>
+
+    <rule ref="Squiz.Commenting.VariableComment">
+        <!-- Use int and bool instead of integer and boolean. -->
+        <exclude name="Squiz.Commenting.VariableComment.IncorrectVarType"/>
+    </rule>
+    <rule ref="Squiz.Commenting.VariableComment.Missing">
+        <exclude-pattern>./tests/Fixtures/*\.php$</exclude-pattern>
     </rule>
 
 </ruleset>

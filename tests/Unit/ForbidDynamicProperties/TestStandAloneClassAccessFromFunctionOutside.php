@@ -13,6 +13,12 @@ use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyModificatio
 use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyUnsetFromFunction;
 
 /**
+ * Verify the behaviour of the trait emulates the PHP native behaviour with the exception of
+ * dynamic properties being forbidden on all PHP versions.
+ *
+ * This test class specifically tests the behaviour when accessing/modifying a property from
+ * inside a function outside the context of the class containing the property.
+ *
  * @covers \WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties
  */
 final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPropertiesTestCase
@@ -47,6 +53,11 @@ final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPr
         'undeclared property',
     );
 
+    /**
+     * Make sure the test fixture is loaded.
+     *
+     * @return void
+     */
     public static function set_up_before_class() // phpcs:ignore PSR1.Methods.CamelCapsMethodName -- Cross-version PHPUnit.
     {
         parent::set_up_before_class();
@@ -54,8 +65,13 @@ final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPr
     }
 
     /**
+     * Verify the behaviour when calling isset() on a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertyIsset($className, $propertyName, $expected)
     {
@@ -64,8 +80,13 @@ final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPr
     }
 
     /**
+     * Verify the behaviour when accessing a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertyGet($className, $propertyName, $expected)
     {
@@ -97,8 +118,13 @@ final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPr
     }
 
     /**
+     * Verify the behaviour when modifying a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertySet($className, $propertyName, $expected)
     {
@@ -138,8 +164,13 @@ final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPr
     }
 
     /**
+     * Verify the behaviour of calling unset() on a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertyUnset($className, $propertyName, $expected)
     {
@@ -176,7 +207,7 @@ final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPr
     /**
      * Base data sets for data providers.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessBase()
     {
@@ -277,7 +308,7 @@ final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPr
     /**
      * Data provider.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessPhpNative()
     {
@@ -295,7 +326,7 @@ final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPr
     /**
      * Data provider.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessWithStdclass()
     {
@@ -305,7 +336,7 @@ final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPr
     /**
      * Data provider.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessWithTrait()
     {

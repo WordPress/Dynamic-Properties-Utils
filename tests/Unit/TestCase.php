@@ -7,6 +7,9 @@ use PHPUnit\Runner\Version as PHPUnit_Version;
 use PHPUnit_Runner_Version;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase as Polyfill_TestCase;
 
+/**
+ * Base test case.
+ */
 abstract class TestCase extends Polyfill_TestCase
 {
     const TEST_VALUE_1 = 'Testing-1-2-3';
@@ -41,6 +44,8 @@ abstract class TestCase extends Polyfill_TestCase
      * in the PHPUnit 8.x and 9.x series, however, CI for this package will always use the most
      * appropriate PHPUnit version and the latest version of that, so in practice, this bug will
      * only be seen on PHPUnit < 8.x.
+     *
+     * @return void
      */
     protected function setNoAccessExpectation()
     {

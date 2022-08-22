@@ -8,6 +8,14 @@ use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeGrandchildClassFixture;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassGrandchildClassFixture;
 
 /**
+ * Verify the behaviour of the trait emulates the PHP native behaviour with the exception of
+ * dynamic properties being forbidden on all PHP versions.
+ *
+ * This test class specifically tests the behaviour when accessing/modifying a property from
+ * inside the "parent" class, where the class being used is part of a hierarchical
+ * class structure with the object being a "grandchild" and properties
+ * existing in the parent, child and the grandchild classes.
+ *
  * @covers \WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties
  */
 final class TestGrandchildObjectAccessFromInsideParent extends ForbidDynamicPropertiesTestCase
@@ -46,8 +54,13 @@ final class TestGrandchildObjectAccessFromInsideParent extends ForbidDynamicProp
     );
 
     /**
+     * Verify the behaviour when calling isset() on a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertyIsset($className, $propertyName, $expected)
     {
@@ -56,8 +69,13 @@ final class TestGrandchildObjectAccessFromInsideParent extends ForbidDynamicProp
     }
 
     /**
+     * Verify the behaviour when accessing a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertyGet($className, $propertyName, $expected)
     {
@@ -89,8 +107,13 @@ final class TestGrandchildObjectAccessFromInsideParent extends ForbidDynamicProp
     }
 
     /**
+     * Verify the behaviour when modifying a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertySet($className, $propertyName, $expected)
     {
@@ -130,8 +153,13 @@ final class TestGrandchildObjectAccessFromInsideParent extends ForbidDynamicProp
     }
 
     /**
+     * Verify the behaviour of calling unset() on a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertyUnset($className, $propertyName, $expected)
     {
@@ -168,7 +196,7 @@ final class TestGrandchildObjectAccessFromInsideParent extends ForbidDynamicProp
     /**
      * Base data sets for data providers.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessBase()
     {
@@ -431,7 +459,7 @@ final class TestGrandchildObjectAccessFromInsideParent extends ForbidDynamicProp
     /**
      * Data provider.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessPhpNative()
     {
@@ -449,7 +477,7 @@ final class TestGrandchildObjectAccessFromInsideParent extends ForbidDynamicProp
     /**
      * Data provider.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessWithStdclass()
     {
@@ -459,7 +487,7 @@ final class TestGrandchildObjectAccessFromInsideParent extends ForbidDynamicProp
     /**
      * Data provider.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessWithTrait()
     {

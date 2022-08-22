@@ -8,6 +8,12 @@ use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeStandAloneClassFixture;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassStandAloneClassFixture;
 
 /**
+ * Verify the behaviour of the trait emulates the PHP native behaviour with the exception of
+ * dynamic properties being forbidden on all PHP versions.
+ *
+ * This test class specifically tests the behaviour when accessing/modifying a property from
+ * inside the context of the class containing the property.
+ *
  * @covers \WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties
  */
 final class TestStandAloneClassAccessFromInside extends ForbidDynamicPropertiesTestCase
@@ -43,8 +49,13 @@ final class TestStandAloneClassAccessFromInside extends ForbidDynamicPropertiesT
     );
 
     /**
+     * Verify the behaviour when calling isset() on a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertyIsset($className, $propertyName, $expected)
     {
@@ -53,8 +64,13 @@ final class TestStandAloneClassAccessFromInside extends ForbidDynamicPropertiesT
     }
 
     /**
+     * Verify the behaviour when accessing a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertyGet($className, $propertyName, $expected)
     {
@@ -80,8 +96,13 @@ final class TestStandAloneClassAccessFromInside extends ForbidDynamicPropertiesT
     }
 
     /**
+     * Verify the behaviour when modifying a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertySet($className, $propertyName, $expected)
     {
@@ -115,8 +136,13 @@ final class TestStandAloneClassAccessFromInside extends ForbidDynamicPropertiesT
     }
 
     /**
+     * Verify the behaviour of calling unset() on a property.
      *
+     * @param string $className    The class (test fixture) to instantiate for this test.
+     * @param string $propertyName Property name.
+     * @param array  $expected     Expectations.
      *
+     * @return void
      */
     public function verifyPropertyUnset($className, $propertyName, $expected)
     {
@@ -147,7 +173,7 @@ final class TestStandAloneClassAccessFromInside extends ForbidDynamicPropertiesT
     /**
      * Base data sets for data providers.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessBase()
     {
@@ -248,7 +274,7 @@ final class TestStandAloneClassAccessFromInside extends ForbidDynamicPropertiesT
     /**
      * Data provider.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessPhpNative()
     {
@@ -266,7 +292,7 @@ final class TestStandAloneClassAccessFromInside extends ForbidDynamicPropertiesT
     /**
      * Data provider.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessWithStdclass()
     {
@@ -276,7 +302,7 @@ final class TestStandAloneClassAccessFromInside extends ForbidDynamicPropertiesT
     /**
      * Data provider.
      *
-     * @var array
+     * @return array
      */
     public function dataPropertyAccessWithTrait()
     {
