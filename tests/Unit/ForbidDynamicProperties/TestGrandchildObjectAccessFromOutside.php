@@ -6,13 +6,33 @@ use OutOfBoundsException;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesGrandchildClassFixture;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeGrandchildClassFixture;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassGrandchildClassFixture;
-use WpOrg\DynamicPropertiesUtils\Tests\Unit\TestCase;
 
 /**
  * @covers \WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties
  */
-final class TestGrandchildObjectAccessFromOutside extends TestCase
+final class TestGrandchildObjectAccessFromOutside extends ForbidDynamicPropertiesTestCase
 {
+    /**
+     * Fully qualified name of the fixture to use for the PHP native tests.
+     *
+     * @var string
+     */
+    const FIXTURE_PHPNATIVE = PHPNativeGrandchildClassFixture::class;
+
+    /**
+     * Fully qualified name of the fixture to use for the stdClass tests.
+     *
+     * @var string
+     */
+    const FIXTURE_STDCLASS = StdclassGrandchildClassFixture::class;
+
+    /**
+     * Fully qualified name of the fixture to use for the ForbidDynamicProperties tests.
+     *
+     * @var string
+     */
+    const FIXTURE_TRAIT = ForbidDynamicPropertiesGrandchildClassFixture::class;
+
     /**
      * List of data set names for properties which would be dynamically set.
      *
@@ -27,126 +47,6 @@ final class TestGrandchildObjectAccessFromOutside extends TestCase
         '[Parent] unset private property',
         'undeclared property',
     );
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessPhpNative
-     *
-     */
-    public function testPropertyIssetPhpNative($name, $expected)
-    {
-        $this->verifyPropertyIsset(PHPNativeGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessPhpNative
-     *
-     */
-    public function testPropertyGetPhpNative($name, $expected)
-    {
-        $this->verifyPropertyGet(PHPNativeGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessPhpNative
-     *
-     */
-    public function testPropertySetPhpNative($name, $expected)
-    {
-        $this->verifyPropertySet(PHPNativeGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessPhpNative
-     *
-     */
-    public function testPropertyUnsetPhpNative($name, $expected)
-    {
-        $this->verifyPropertyUnset(PHPNativeGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithStdclass
-     *
-     */
-    public function testPropertyIssetWithStdclass($name, $expected)
-    {
-        $this->verifyPropertyIsset(StdclassGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithStdclass
-     *
-     */
-    public function testPropertyGetWithStdclass($name, $expected)
-    {
-        $this->verifyPropertyGet(StdclassGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithStdclass
-     *
-     */
-    public function testPropertySetWithStdclass($name, $expected)
-    {
-        $this->verifyPropertySet(StdclassGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithStdclass
-     *
-     */
-    public function testPropertyUnsetWithStdclass($name, $expected)
-    {
-        $this->verifyPropertyUnset(StdclassGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithTrait
-     *
-     */
-    public function testPropertyIssetWithTrait($name, $expected)
-    {
-        $this->verifyPropertyIsset(ForbidDynamicPropertiesGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithTrait
-     *
-     */
-    public function testPropertyGetWithTrait($name, $expected)
-    {
-        $this->verifyPropertyGet(ForbidDynamicPropertiesGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithTrait
-     *
-     */
-    public function testPropertySetWithTrait($name, $expected)
-    {
-        $this->verifyPropertySet(ForbidDynamicPropertiesGrandchildClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithTrait
-     *
-     */
-    public function testPropertyUnsetWithTrait($name, $expected)
-    {
-        $this->verifyPropertyUnset(ForbidDynamicPropertiesGrandchildClassFixture::class, $name, $expected);
-    }
 
     /**
      *

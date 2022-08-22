@@ -6,7 +6,6 @@ use OutOfBoundsException;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesStandAloneClassFixture;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeStandAloneClassFixture;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassStandAloneClassFixture;
-use WpOrg\DynamicPropertiesUtils\Tests\Unit\TestCase;
 
 use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyAccessFromFunction;
 use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyIssetFromFunction;
@@ -16,8 +15,29 @@ use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyUnsetFromFu
 /**
  * @covers \WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties
  */
-final class TestStandAloneClassAccessFromFunctionOutside extends TestCase
+final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPropertiesTestCase
 {
+    /**
+     * Fully qualified name of the fixture to use for the PHP native tests.
+     *
+     * @var string
+     */
+    const FIXTURE_PHPNATIVE = PHPNativeStandAloneClassFixture::class;
+
+    /**
+     * Fully qualified name of the fixture to use for the stdClass tests.
+     *
+     * @var string
+     */
+    const FIXTURE_STDCLASS = StdclassStandAloneClassFixture::class;
+
+    /**
+     * Fully qualified name of the fixture to use for the ForbidDynamicProperties tests.
+     *
+     * @var string
+     */
+    const FIXTURE_TRAIT = ForbidDynamicPropertiesStandAloneClassFixture::class;
+
     /**
      * List of data set names for properties which would be dynamically set.
      *
@@ -31,126 +51,6 @@ final class TestStandAloneClassAccessFromFunctionOutside extends TestCase
     {
         parent::set_up_before_class();
         require_once dirname(dirname(__DIR__)) . '/Fixtures/NonClassFunctionsFixture.php';
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessPhpNative
-     *
-     */
-    public function testPropertyIssetPhpNative($name, $expected)
-    {
-        $this->verifyPropertyIsset(PHPNativeStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessPhpNative
-     *
-     */
-    public function testPropertyGetPhpNative($name, $expected)
-    {
-        $this->verifyPropertyGet(PHPNativeStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessPhpNative
-     *
-     */
-    public function testPropertySetPhpNative($name, $expected)
-    {
-        $this->verifyPropertySet(PHPNativeStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessPhpNative
-     *
-     */
-    public function testPropertyUnsetPhpNative($name, $expected)
-    {
-        $this->verifyPropertyUnset(PHPNativeStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithStdclass
-     *
-     */
-    public function testPropertyIssetWithStdclass($name, $expected)
-    {
-        $this->verifyPropertyIsset(StdclassStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithStdclass
-     *
-     */
-    public function testPropertyGetWithStdclass($name, $expected)
-    {
-        $this->verifyPropertyGet(StdclassStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithStdclass
-     *
-     */
-    public function testPropertySetWithStdclass($name, $expected)
-    {
-        $this->verifyPropertySet(StdclassStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithStdclass
-     *
-     */
-    public function testPropertyUnsetWithStdclass($name, $expected)
-    {
-        $this->verifyPropertyUnset(StdclassStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithTrait
-     *
-     */
-    public function testPropertyIssetWithTrait($name, $expected)
-    {
-        $this->verifyPropertyIsset(ForbidDynamicPropertiesStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithTrait
-     *
-     */
-    public function testPropertyGetWithTrait($name, $expected)
-    {
-        $this->verifyPropertyGet(ForbidDynamicPropertiesStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithTrait
-     *
-     */
-    public function testPropertySetWithTrait($name, $expected)
-    {
-        $this->verifyPropertySet(ForbidDynamicPropertiesStandAloneClassFixture::class, $name, $expected);
-    }
-
-    /**
-     *
-     * @dataProvider dataPropertyAccessWithTrait
-     *
-     */
-    public function testPropertyUnsetWithTrait($name, $expected)
-    {
-        $this->verifyPropertyUnset(ForbidDynamicPropertiesStandAloneClassFixture::class, $name, $expected);
     }
 
     /**
