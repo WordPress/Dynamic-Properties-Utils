@@ -6,7 +6,7 @@ use OutOfBoundsException;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesStandAloneClassFixture;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeStandAloneClassFixture;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassStandAloneClassFixture;
-use WpOrg\DynamicPropertiesUtils\Tests\TestCase;
+use WpOrg\DynamicPropertiesUtils\Tests\Unit\TestCase;
 
 use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyAccessFromFunction;
 use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyIssetFromFunction;

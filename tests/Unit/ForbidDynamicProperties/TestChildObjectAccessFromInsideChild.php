@@ -6,7 +6,7 @@ use OutOfBoundsException;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesChildClassFixture;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeChildClassFixture;
 use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassChildClassFixture;
-use WpOrg\DynamicPropertiesUtils\Tests\TestCase;
+use WpOrg\DynamicPropertiesUtils\Tests\Unit\TestCase;
 
 /**
  * @covers \WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties
