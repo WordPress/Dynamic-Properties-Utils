@@ -9,3 +9,4 @@ phpcs.xml
 # Ignore PHPUnit results cache file and local overrides of the PHPUnit config file.
 phpunit.xml
 .phpunit.result.cache
+/tests/coverage/
