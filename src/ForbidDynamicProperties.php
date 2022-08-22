@@ -2,6 +2,7 @@
 
 namespace WpOrg\DynamicPropertiesUtils;
 
+use Error;
 use OutOfBoundsException;
 use ReflectionException;
 use ReflectionProperty;
@@ -60,6 +61,7 @@ trait ForbidDynamicProperties
      *
      * @return void
      *
+     * @throws Error                When an attempt is made to set an inaccessible property.
      * @throws OutOfBoundsException When an attempt is made to set a dynamic property.
      */
     public function __set($name, $value)
@@ -105,7 +107,7 @@ trait ForbidDynamicProperties
 
         if ($callOrigin !== static::class && \property_exists(static::class, $name) === true) {
             // This is an inaccessible property in the "outer" class. Emulate the PHP native error.
-            \trigger_error(\sprintf('Cannot access private property %s::$%s', static::class, $name), \E_USER_ERROR);
+            throw new Error(\sprintf('Cannot access private property %s::$%s', static::class, $name));
             return;
         }
 

@@ -106,4 +106,17 @@
         <exclude-pattern>./tests/Fixtures/*\.php$</exclude-pattern>
     </rule>
 
+
+	<!--
+	#############################################################################
+	SELECTIVE EXCLUSIONS
+	Exclude specific files for specific sniffs and/or exclude sub-groups in sniffs.
+	#############################################################################
+	-->
+
+	<!-- The polyfills for the PHP native exceptions can not have a namespace. -->
+	<rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+		<exclude-pattern>/compat/Error\.php$</exclude-pattern>
+	</rule>
+
 </ruleset>
