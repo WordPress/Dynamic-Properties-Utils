@@ -28,14 +28,14 @@ trait ForbidDynamicProperties
      *
      * @var int
      */
-    private $fdpBacktraceLimit = 3;
+    private $dpuBacktraceLimit = 3;
 
     /**
      * Position in the backtrace of the frame for the call to __set().
      *
      * @var int
      */
-    private $fdpSetFrame = 1;
+    private $dpuSetFrame = 1;
 
     /**
      * Position in the backtrace of the frame containing the information on the context
@@ -43,14 +43,7 @@ trait ForbidDynamicProperties
      *
      * @var int
      */
-    private $fdpOriginFrame = 2;
-
-    /**
-     * Reflection instance of the current property or false if not reflection instance could be created.
-     *
-     * @var ReflectionProperty|false
-     */
-    private $fdpReflectionProp;
+    private $dpuOriginFrame = 2;
 
     /**
      * Magic method which handles property setting for inaccessible and unset properties,
@@ -66,23 +59,21 @@ trait ForbidDynamicProperties
      */
     public function __set($name, $value)
     {
-        $this->fdpSetReflectionProp($name);
-
-        if ($this->fdpIsPublicProperty()) {
+        if ($this->dpuIsPublicProperty($name)) {
             // This is an unset public property, just set it.
             $this->$name = $value;
             return;
         }
 
-        $backtrace  = $this->fdpGetBacktrace();
-        $selfParent = $this->fdpGetParentClass($backtrace);
-        $callOrigin = $this->fdpGetCallOrigin($backtrace);
+        $backtrace  = $this->dpuGetBacktrace();
+        $selfParent = $this->dpuGetParentClass($backtrace);
+        $callOrigin = $this->dpuGetCallOrigin($backtrace);
 
         /*
          * Handle calls which originate from within the class hierarchy which contains the trait.
          */
         if (\is_a($callOrigin, $selfParent, true)) {
-            if ($this->fdpIsProtectedProperty()) {
+            if ($this->dpuIsProtectedProperty($name)) {
                 $this->$name = $value;
                 return;
             }
@@ -99,7 +90,7 @@ trait ForbidDynamicProperties
                  * Property is not accessible from the current context, use Reflection to set the value,
                  * but make sure the set actually succeeded.
                  */
-                if ($this->fdpSetInaccessibleProperty($callOrigin, $name, $value) === true) {
+                if ($this->dpuSetInaccessibleProperty($callOrigin, $name, $value) === true) {
                     return;
                 }
             }
@@ -122,39 +113,35 @@ trait ForbidDynamicProperties
     }
 
     /**
-     * Retrieve a ReflectionProperty instance of the current property and store it.
+     * Check if the current property is public.
      *
      * @param string $propertyName Property name.
      *
-     * @return void
-     */
-    private function fdpSetReflectionProp($propertyName)
-    {
-        try {
-            $this->fdpReflectionProp = new ReflectionProperty($this, $propertyName);
-        } catch (ReflectionException $e) {
-            $this->fdpReflectionProp = false;
-        }
-    }
-
-    /**
-     * Check if the current property is public.
-     *
      * @return bool
      */
-    private function fdpIsPublicProperty()
+    private function dpuIsPublicProperty($propertyName)
     {
-        return $this->fdpReflectionProp !== false && $this->fdpReflectionProp->isPublic();
+        try {
+            return (new ReflectionProperty($this, $propertyName))->isPublic();
+        } catch (ReflectionException $e) {
+            return false;
+        }
     }
 
     /**
      * Check if the current property is protected.
      *
+     * @param string $propertyName Property name.
+     *
      * @return bool
      */
-    private function fdpIsProtectedProperty()
+    private function dpuIsProtectedProperty($propertyName)
     {
-        return $this->fdpReflectionProp !== false && $this->fdpReflectionProp->isProtected();
+        try {
+            return (new ReflectionProperty($this, $propertyName))->isProtected();
+        } catch (ReflectionException $e) {
+            return false;
+        }
     }
 
     /**
@@ -162,9 +149,9 @@ trait ForbidDynamicProperties
      *
      * @return array[]
      */
-    private function fdpGetBacktrace()
+    private function dpuGetBacktrace()
     {
-        return \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, $this->fdpBacktraceLimit);
+        return \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, $this->dpuBacktraceLimit);
     }
 
     /**
@@ -174,13 +161,13 @@ trait ForbidDynamicProperties
      *
      * @return string Class name or an empty string if the class name could not be determined.
      */
-    private function fdpGetParentClass($backtrace)
+    private function dpuGetParentClass($backtrace)
     {
         if (
-            isset($backtrace[$this->fdpSetFrame]['class'], $backtrace[$this->fdpSetFrame]['function'])
-            && $backtrace[$this->fdpSetFrame]['function'] === '__set'
+            isset($backtrace[$this->dpuSetFrame]['class'], $backtrace[$this->dpuSetFrame]['function'])
+            && $backtrace[$this->dpuSetFrame]['function'] === '__set'
         ) {
-            for ($class = $backtrace[$this->fdpSetFrame]['class']; ($parent = get_parent_class($class)) !== false; $class = $parent);
+            for ($class = $backtrace[$this->dpuSetFrame]['class']; ($parent = get_parent_class($class)) !== false; $class = $parent);
             return $class;
         }
 
@@ -196,10 +183,10 @@ trait ForbidDynamicProperties
      * @return string Fully qualified class name or an empty string if the class name
      *                could not be determined or the call was not made from a class context.
      */
-    private function fdpGetCallOrigin($backtrace)
+    private function dpuGetCallOrigin($backtrace)
     {
-        if (isset($backtrace[$this->fdpOriginFrame]['class'])) {
-            return $backtrace[$this->fdpOriginFrame]['class'];
+        if (isset($backtrace[$this->dpuOriginFrame]['class'])) {
+            return $backtrace[$this->dpuOriginFrame]['class'];
         }
 
         return '';
@@ -215,7 +202,7 @@ trait ForbidDynamicProperties
      *
      * @return bool Whether the property was succesfully set.
      */
-    private function fdpSetInaccessibleProperty($targetClass, $propertyName, $value)
+    private function dpuSetInaccessibleProperty($targetClass, $propertyName, $value)
     {
         try {
             $reflectionProp = new ReflectionProperty($targetClass, $propertyName);
