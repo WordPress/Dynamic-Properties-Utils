@@ -34,7 +34,8 @@
     "autoload": {
         "psr-4": {
             "WpOrg\\DynamicPropertiesUtils\\": "src/"
-        }
+        },
+        "files": ["compat/Error.php"]
     },
     "autoload-dev": {
         "psr-4": {
