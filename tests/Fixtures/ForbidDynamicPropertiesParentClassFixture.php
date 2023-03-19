@@ -1,8 +1,8 @@
 <?php
 
-namespace WpOrg\DynamicPropertiesUtils\Tests\Fixtures;
+namespace WordPress\DynamicPropertiesUtils\Tests\Fixtures;
 
-use WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties;
+use WordPress\DynamicPropertiesUtils\ForbidDynamicProperties;
 
 class ForbidDynamicPropertiesParentClassFixture
 {

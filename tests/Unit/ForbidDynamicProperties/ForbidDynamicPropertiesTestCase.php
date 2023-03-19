@@ -1,8 +1,8 @@
 <?php
 
-namespace WpOrg\DynamicPropertiesUtils\Tests\Unit\ForbidDynamicProperties;
+namespace WordPress\DynamicPropertiesUtils\Tests\Unit\ForbidDynamicProperties;
 
-use WpOrg\DynamicPropertiesUtils\Tests\Unit\TestCase;
+use WordPress\DynamicPropertiesUtils\Tests\Unit\TestCase;
 
 /**
  * ForbidDynamicProperties base test case.

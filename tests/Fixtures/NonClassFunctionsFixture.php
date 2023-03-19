@@ -4,7 +4,7 @@
  * Fixture to test triggering the magic methods from outside any class context.
  */
 
-namespace WpOrg\DynamicPropertiesUtils\Tests\Fixtures;
+namespace WordPress\DynamicPropertiesUtils\Tests\Fixtures;
 
 function testPropertyIssetFromFunction($objectInstance, $name)
 {

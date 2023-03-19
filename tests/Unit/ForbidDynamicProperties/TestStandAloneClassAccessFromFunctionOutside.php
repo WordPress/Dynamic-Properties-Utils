@@ -1,16 +1,16 @@
 <?php
 
-namespace WpOrg\DynamicPropertiesUtils\Tests\Unit\ForbidDynamicProperties;
+namespace WordPress\DynamicPropertiesUtils\Tests\Unit\ForbidDynamicProperties;
 
 use OutOfBoundsException;
-use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesStandAloneClassFixture;
-use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeStandAloneClassFixture;
-use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassStandAloneClassFixture;
+use WordPress\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesStandAloneClassFixture;
+use WordPress\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeStandAloneClassFixture;
+use WordPress\DynamicPropertiesUtils\Tests\Fixtures\StdclassStandAloneClassFixture;
 
-use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyAccessFromFunction;
-use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyIssetFromFunction;
-use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyModificationFromFunction;
-use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyUnsetFromFunction;
+use function WordPress\DynamicPropertiesUtils\Tests\Fixtures\testPropertyAccessFromFunction;
+use function WordPress\DynamicPropertiesUtils\Tests\Fixtures\testPropertyIssetFromFunction;
+use function WordPress\DynamicPropertiesUtils\Tests\Fixtures\testPropertyModificationFromFunction;
+use function WordPress\DynamicPropertiesUtils\Tests\Fixtures\testPropertyUnsetFromFunction;
 
 /**
  * Verify the behaviour of the trait emulates the PHP native behaviour with the exception of
@@ -19,7 +19,7 @@ use function WpOrg\DynamicPropertiesUtils\Tests\Fixtures\testPropertyUnsetFromFu
  * This test class specifically tests the behaviour when accessing/modifying a property from
  * inside a function outside the context of the class containing the property.
  *
- * @covers \WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties
+ * @covers \WordPress\DynamicPropertiesUtils\ForbidDynamicProperties
  */
 final class TestStandAloneClassAccessFromFunctionOutside extends ForbidDynamicPropertiesTestCase
 {

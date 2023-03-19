@@ -1,6 +1,6 @@
 <?php
 
-namespace WpOrg\DynamicPropertiesUtils\Tests\Fixtures;
+namespace WordPress\DynamicPropertiesUtils\Tests\Fixtures;
 
 class PHPNativeStandAloneClassFixture
 {
