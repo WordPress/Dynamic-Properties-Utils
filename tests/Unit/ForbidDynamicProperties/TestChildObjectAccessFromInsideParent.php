@@ -1,11 +1,11 @@
 <?php
 
-namespace WpOrg\DynamicPropertiesUtils\Tests\Unit\ForbidDynamicProperties;
+namespace WordPress\DynamicPropertiesUtils\Tests\Unit\ForbidDynamicProperties;
 
 use OutOfBoundsException;
-use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesChildClassFixture;
-use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeChildClassFixture;
-use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassChildClassFixture;
+use WordPress\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesChildClassFixture;
+use WordPress\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeChildClassFixture;
+use WordPress\DynamicPropertiesUtils\Tests\Fixtures\StdclassChildClassFixture;
 
 /**
  * Verify the behaviour of the trait emulates the PHP native behaviour with the exception of
@@ -16,7 +16,7 @@ use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassChildClassFixture;
  * class structure with the object being a "child" and properties
  * existing in the parent and the child classes.
  *
- * @covers \WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties
+ * @covers \WordPress\DynamicPropertiesUtils\ForbidDynamicProperties
  */
 final class TestChildObjectAccessFromInsideParent extends ForbidDynamicPropertiesTestCase
 {

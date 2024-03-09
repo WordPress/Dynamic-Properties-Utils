@@ -1,6 +1,6 @@
 <?php
 
-namespace WpOrg\DynamicPropertiesUtils;
+namespace WordPress\DynamicPropertiesUtils;
 
 use OutOfBoundsException;
 use ReflectionProperty;

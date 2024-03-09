@@ -1,11 +1,11 @@
 <?php
 
-namespace WpOrg\DynamicPropertiesUtils\Tests\Unit\ForbidDynamicProperties;
+namespace WordPress\DynamicPropertiesUtils\Tests\Unit\ForbidDynamicProperties;
 
 use OutOfBoundsException;
-use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesStandAloneClassFixture;
-use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeStandAloneClassFixture;
-use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassStandAloneClassFixture;
+use WordPress\DynamicPropertiesUtils\Tests\Fixtures\ForbidDynamicPropertiesStandAloneClassFixture;
+use WordPress\DynamicPropertiesUtils\Tests\Fixtures\PHPNativeStandAloneClassFixture;
+use WordPress\DynamicPropertiesUtils\Tests\Fixtures\StdclassStandAloneClassFixture;
 
 /**
  * Verify the behaviour of the trait emulates the PHP native behaviour with the exception of
@@ -14,7 +14,7 @@ use WpOrg\DynamicPropertiesUtils\Tests\Fixtures\StdclassStandAloneClassFixture;
  * This test class specifically tests the behaviour when accessing/modifying a property from
  * inside the context of the class containing the property.
  *
- * @covers \WpOrg\DynamicPropertiesUtils\ForbidDynamicProperties
+ * @covers \WordPress\DynamicPropertiesUtils\ForbidDynamicProperties
  */
 final class TestStandAloneClassAccessFromInside extends ForbidDynamicPropertiesTestCase
 {

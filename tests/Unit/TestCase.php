@@ -1,6 +1,6 @@
 <?php
 
-namespace WpOrg\DynamicPropertiesUtils\Tests\Unit;
+namespace WordPress\DynamicPropertiesUtils\Tests\Unit;
 
 use Error;
 use PHPUnit\Runner\Version as PHPUnit_Version;
